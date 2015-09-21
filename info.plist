@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>fr.ketouem.alfred.fullscreen</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>8F537504-61C2-45F5-804E-9227A606AD2C</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>05541C64-95AE-43AD-B735-DB48102A0425</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Ketouem</string>
+	<key>description</key>
+	<string>Make the desired application go fullscreen</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Fullscreen app</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string>set theQuery to "{query}"
+  -- theQuery contains the process name
+tell application "System Events"	tell process theQuery		set value of attribute "AXFullScreen" of window 1 to true	end tellend tell</string>
+				<key>type</key>
+				<integer>6</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>05541C64-95AE-43AD-B735-DB48102A0425</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>fs</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Gathering processes...</string>
+				<key>script</key>
+				<string>set theQuery to "{query}"tell application "System Events"	set listOfProcesses to (name of every process where background only is false)end tellset xml to "&lt;?xml version=\"1.0\"?&gt;&lt;items&gt;"repeat with process in listOfProcesses
+	if process starts with theQuery or theQuery is equal to "" then
+		set bid to id of application process		set xmlItem to "&lt;item uid=\"" &amp; process &amp; "\" arg=\"" &amp; process &amp; "\" autocomplete=\"" &amp; process &amp; "\" type=\"file\"&gt; &lt;title&gt;" &amp; process &amp; "&lt;/title&gt;" &amp; "&lt;/item&gt;"		set xml to xml &amp; xmlItem
+	end ifend repeatset xml to xml &amp; "&lt;/items&gt;"
+
+return xml</string>
+				<key>subtext</key>
+				<string>Switch the selected application into full screen mode</string>
+				<key>title</key>
+				<string>Take application full screen</string>
+				<key>type</key>
+				<integer>6</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>8F537504-61C2-45F5-804E-9227A606AD2C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>05541C64-95AE-43AD-B735-DB48102A0425</key>
+		<dict>
+			<key>ypos</key>
+			<real>130</real>
+		</dict>
+		<key>8F537504-61C2-45F5-804E-9227A606AD2C</key>
+		<dict>
+			<key>ypos</key>
+			<real>160</real>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
