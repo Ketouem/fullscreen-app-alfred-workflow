@@ -1,6 +1,6 @@
 dependencies:
   pre:
-    - sudo apt-get update; sudo apt-get install libplist-utils
+    - sudo apt-get update; sudo apt-get install libxml-xpath-perl
 test:
   override:
     - make build
