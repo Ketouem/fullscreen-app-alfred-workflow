@@ -110,6 +110,6 @@ return xml</string>
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/Ketouem/fullscreen-app-alfred-workflow</string>
 </dict>
 </plist>
