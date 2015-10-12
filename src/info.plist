@@ -73,7 +73,8 @@ tell application "System Events"	tell process theQuery		set value of attribute
 				<key>script</key>
 				<string>set theQuery to "{query}"tell application "System Events"	set listOfProcesses to (name of every process where background only is false)end tellset xml to "&lt;?xml version=\"1.0\"?&gt;&lt;items&gt;"repeat with process in listOfProcesses
 	if process starts with theQuery or theQuery is equal to "" then
-		set bid to id of application process		set xmlItem to "&lt;item uid=\"" &amp; process &amp; "\" arg=\"" &amp; process &amp; "\" autocomplete=\"" &amp; process &amp; "\" type=\"file\"&gt; &lt;title&gt;" &amp; process &amp; "&lt;/title&gt;" &amp; "&lt;/item&gt;"		set xml to xml &amp; xmlItem
+		set icon to "&lt;icon type=\"fileicon\"&gt;" &amp; POSIX path of (path to application process) &amp; "&lt;/icon&gt;"
+		set bid to id of application process		set xmlItem to "&lt;item uid=\"" &amp; process &amp; "\" arg=\"" &amp; process &amp; "\" autocomplete=\"" &amp; process &amp; "\" type=\"file\"&gt; &lt;title&gt;" &amp; process &amp; "&lt;/title&gt;" &amp; icon &amp; "&lt;/item&gt;"		set xml to xml &amp; xmlItem
 	end ifend repeatset xml to xml &amp; "&lt;/items&gt;"
 
 return xml</string>
