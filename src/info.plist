@@ -40,7 +40,7 @@
 				<key>script</key>
 				<string>set theQuery to "{query}"
   -- theQuery contains the process name
-tell application "System Events"	tell process theQuery		set isFullScreen to get value of attribute "AXFullScreen" of window 1		set value of attribute "AXFullScreen" of window 1 to not isFullScreen	end tellend tell</string>
+tell application "System Events"	tell process theQuery		set isFullScreen to get value of attribute "AXFullScreen" of window 1		set value of attribute "AXFullScreen" of window 1 to not isFullScreen	end tellend tell</string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
