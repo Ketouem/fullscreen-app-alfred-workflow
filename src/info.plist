@@ -40,9 +40,7 @@
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>set theQuery to "{query}"
-  -- theQuery contains the process name
-tell application "System Events"	tell process theQuery		set value of attribute "AXFullScreen" of window 1 to true	end tellend tell</string>
+				<string>tell application "System Events"	tell process "{query}"		set isFullScreen to get value of attribute "AXFullScreen" of window 1		set value of attribute "AXFullScreen" of window 1 to not isFullScreen	end tellend tell</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -81,17 +79,17 @@ tell application "System Events"	tell process theQuery		set value of attribute
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Gathering processes...</string>
+				<string>Gathering running applications...</string>
 				<key>script</key>
-				<string>./fullScreen.sh {query}</string>
+				<string>./generateAppList.sh {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>subtext</key>
-				<string>Switch the selected application into full screen mode</string>
+				<string>Toggle the selected application into full screen / windowed</string>
 				<key>title</key>
-				<string>Take application full screen</string>
+				<string>Toggle full screen state of an application</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
