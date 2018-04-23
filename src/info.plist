@@ -5,7 +5,7 @@
 	<key>bundleid</key>
 	<string>fr.ketouem.alfred.fullscreen</string>
 	<key>category</key>
-	<string>Tools</string>
+	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
 		<key>8F537504-61C2-45F5-804E-9227A606AD2C</key>
@@ -17,6 +17,8 @@
 				<integer>0</integer>
 				<key>modifiersubtext</key>
 				<string></string>
+				<key>vitoclose</key>
+				<false/>
 			</dict>
 		</array>
 	</dict>
@@ -40,7 +42,11 @@
 				<key>script</key>
 				<string>set theQuery to "{query}"
   -- theQuery contains the process name
-tell application "System Events"	tell process theQuery		set isFullScreen to get value of attribute "AXFullScreen" of window 1		set value of attribute "AXFullScreen" of window 1 to not isFullScreen	end tellend tell</string>
+tell application "System Events"	tell process theQuery		set value of attribute "AXFullScreen" of window 1 to true	end tellend tell</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>type</key>
 				<integer>6</integer>
 			</dict>
@@ -49,11 +55,17 @@ tell application "System Events"	tell process theQuery		set isFullScreen to ge
 			<key>uid</key>
 			<string>05541C64-95AE-43AD-B735-DB48102A0425</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>escaping</key>
@@ -71,19 +83,17 @@ tell application "System Events"	tell process theQuery		set isFullScreen to ge
 				<key>runningsubtext</key>
 				<string>Gathering processes...</string>
 				<key>script</key>
-				<string>set theQuery to "{query}"tell application "System Events"	set listOfProcesses to (name of every process where background only is false)end tellset xml to "&lt;?xml version=\"1.0\"?&gt;&lt;items&gt;"repeat with process in listOfProcesses
-	if process starts with theQuery or theQuery is equal to "" then
-		set icon to "&lt;icon type=\"fileicon\"&gt;" &amp; POSIX path of (path to application process) &amp; "&lt;/icon&gt;"
-		set bid to id of application process		set xmlItem to "&lt;item uid=\"" &amp; process &amp; "\" arg=\"" &amp; process &amp; "\" autocomplete=\"" &amp; process &amp; "\" type=\"file\"&gt; &lt;title&gt;" &amp; process &amp; "&lt;/title&gt;" &amp; icon &amp; "&lt;/item&gt;"		set xml to xml &amp; xmlItem
-	end ifend repeatset xml to xml &amp; "&lt;/items&gt;"
-
-return xml</string>
+				<string>./fullScreen.sh {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
 				<key>subtext</key>
 				<string>Switch the selected application into full screen mode</string>
 				<key>title</key>
 				<string>Take application full screen</string>
 				<key>type</key>
-				<integer>6</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -92,7 +102,7 @@ return xml</string>
 			<key>uid</key>
 			<string>8F537504-61C2-45F5-804E-9227A606AD2C</string>
 			<key>version</key>
-			<integer>0</integer>
+			<integer>2</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -101,11 +111,15 @@ return xml</string>
 	<dict>
 		<key>05541C64-95AE-43AD-B735-DB48102A0425</key>
 		<dict>
+			<key>xpos</key>
+			<integer>500</integer>
 			<key>ypos</key>
 			<real>130</real>
 		</dict>
 		<key>8F537504-61C2-45F5-804E-9227A606AD2C</key>
 		<dict>
+			<key>xpos</key>
+			<integer>300</integer>
 			<key>ypos</key>
 			<real>160</real>
 		</dict>
