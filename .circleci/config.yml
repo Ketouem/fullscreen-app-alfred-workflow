@@ -1,0 +1,16 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: alpine
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: apk --update add make zip perl perl-xml-libxml perl-xml-xpath bash
+      - run:
+          name: Package workflow
+          command: make build
+      - store_artifacts:
+          path: bin
