@@ -8,9 +8,12 @@ jobs:
       - checkout
       - run:
           name: Install dependencies
-          command: apk --update add make zip perl perl-xml-libxml perl-xml-xpath bash
+          command: apk --update add make zip perl perl-xml-libxml perl-xml-xpath bash ca-certificates
       - run:
           name: Package workflow
           command: make build
+      - run:
+          name: Check that the file has been created
+          command: test -f bin/fullscreen-app.alfredworkflow
       - store_artifacts:
           path: bin
